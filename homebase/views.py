@@ -2,8 +2,8 @@ from django.views.generic import TemplateView, ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from homebase.models import ImagePost
 from django.urls import reverse, reverse_lazy
-from django.contrib.auth.forms import UserCreationForm
-
+from homebase.forms import CustomUserCreationForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class HelloWorld(TemplateView):
@@ -17,22 +17,27 @@ class PostDetailView(DetailView):
     model = ImagePost
     template_name = 'Image_detail.html'
 
-class PostCreateView(CreateView):
+class PostCreateView(LoginRequiredMixin, CreateView):
     model = ImagePost
     template_name = 'ImagePost_create.html'
     fields = '__all__'
+    login_url = 'login'
     
-class PostUpdateView(UpdateView):
+class PostUpdateView(LoginRequiredMixin, UpdateView):
     model = ImagePost
     template_name = 'ImagePost_update.html'
     fields = '__all__'
+    login_url = 'login'
 
-class PostDeleteView(DeleteView):
+class PostDeleteView(LoginRequiredMixin, DeleteView):
     model = ImagePost
     template_name = 'ImagePost_delete.html'
     success_url = reverse_lazy("posts")
+    login_url = 'login'
     
 class SignUpView(CreateView):
-    form_class = UserCreationForm
+    form_class = CustomUserCreationForm
     template_name = 'Signup.html'
     success_url = reverse_lazy("login")
+    
+
