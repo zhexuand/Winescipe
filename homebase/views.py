@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView, ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from homebase.models import ImagePost, Like
+from homebase.models import ImagePost, Like, WinescipeUser, UserConnection
 from django.urls import reverse, reverse_lazy
 from homebase.forms import CustomUserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -14,6 +14,16 @@ class HelloWorld(TemplateView):
 class PostsView(ListView):
     model = ImagePost
     template_name = 'Index.html'
+    def get_queryset(self):
+        current_user = self.request.user
+        following = set()
+        for conn in UserConnection.objects.filter(creator=current_user).select_related('following'):
+            following.add(conn.following)
+        return ImagePost.objects.filter(author__in=following)
+    
+class UserDetailView(DetailView):
+    model = WinescipeUser
+    template_name = 'User_detail.html'
     
 class PostDetailView(DetailView):
     model = ImagePost

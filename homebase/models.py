@@ -13,6 +13,34 @@ class WinescipeUser(AbstractUser):
         null = True
         )
         
+    def get_connections(self):
+        connections = UserConnection.objects.filter(creator=self)
+        return connections
+
+    def get_followers(self):
+        followers = UserConnection.objects.filter(following=self)
+        return followers
+
+    def is_followed_by(self, user):
+        followers = UserConnection.objects.filter(following=self)
+        return followers.filter(creator=user).exists()
+        
+class UserConnection(models.Model):
+    created = models.DateTimeField(auto_now_add=True, editable=False)
+    #A follows B
+    #A
+    creator = models.ForeignKey(
+        WinescipeUser,
+        on_delete=models.CASCADE,
+        related_name="friendship_creator_set")
+    #B
+    following = models.ForeignKey(
+        WinescipeUser,
+        on_delete=models.CASCADE,
+        related_name="friend_set")
+
+    def __str__(self):
+        return self.creator.username + ' follows ' + self.following.username
         
 class ImagePost(models.Model):
     author = models.ForeignKey(WinescipeUser,on_delete=models.CASCADE,related_name='my_posts')
