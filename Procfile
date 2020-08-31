@@ -1,0 +1,1 @@
+web: gunicorn Winescipe.wsgi --log-file -
