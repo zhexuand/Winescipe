@@ -7,3 +7,5 @@ verify_ssl = true
 
 [packages]
 django = "*"
+django-imagekit = "*"
+pillow = "*"
