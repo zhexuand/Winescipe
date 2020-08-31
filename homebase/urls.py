@@ -19,7 +19,7 @@ from homebase.views import HelloWorld,PostsView,PostDetailView,PostCreateView,Po
 
 urlpatterns = [
     path('hellotest/', HelloWorld.as_view(), name='helloworld'),
-    path('posts/', PostsView.as_view(), name='posts'),
+    path('', PostsView.as_view(), name='posts'),
     path('posts/<int:pk>/', PostDetailView.as_view(), name='postdetail'),
     path('posts/new/', PostCreateView.as_view(), name='new_post'),
     path('posts/update/<int:pk>/', PostUpdateView.as_view(), name='update_post'),

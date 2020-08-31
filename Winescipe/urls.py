@@ -19,7 +19,7 @@ from homebase.views import SignUpView
 
 urlpatterns = [
     path('H1detheadmin/', admin.site.urls),
-    path('Homebase/', include('homebase.urls')),
+    path('', include('homebase.urls')),
     path('Auth/', include('django.contrib.auth.urls')),
     path('Auth/signup/', SignUpView.as_view(),name='signup'),
 ]

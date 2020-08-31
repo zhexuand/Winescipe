@@ -11,7 +11,7 @@ from annoying.decorators import ajax_request
 class HelloWorld(TemplateView):
     template_name = 'Hellotest.html'
 
-class PostsView(ListView):
+class PostsView(LoginRequiredMixin, ListView):
     model = ImagePost
     template_name = 'Index.html'
     def get_queryset(self):
