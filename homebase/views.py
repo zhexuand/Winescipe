@@ -13,7 +13,7 @@ class HelloWorld(TemplateView):
 
 class PostsView(LoginRequiredMixin, ListView):
     model = ImagePost
-    template_name = 'Index.html'
+    template_name = 'index.html'
     login_url = 'login'
     def get_queryset(self):
         current_user = self.request.user
