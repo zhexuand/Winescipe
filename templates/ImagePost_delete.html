@@ -1,3 +1,8 @@
+
+{% extends 'basestyle.html' %}
+
+{% block content %}
+
 <h1>Delete My Post</h1>
 
 <form action="" method="post" enctype="multipart/form-data">
@@ -5,3 +10,5 @@
     <p>Do you really want to delete "{{object.title}}"?</p>
     <button type="submit">Yes, delete it.</button>
 </form>
+
+{% endblock content %}

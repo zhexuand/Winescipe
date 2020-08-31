@@ -1,3 +1,7 @@
+{% extends 'basestyle.html' %}
+
+{% block content %}
+
 <p> {{ object.title }} </p>
 <br>
 <br>
@@ -9,3 +13,5 @@
 <br>
 <br>
 <image src="/{{object.image}}">
+
+{% endblock content %}

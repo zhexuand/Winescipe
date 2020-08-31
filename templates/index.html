@@ -1,33 +1,22 @@
+{% extends "basestyle.html" %}
 
-{% load static %}
 
-<ul> 
-	{% if request.user.is_authenticated %}
-		<li>
-			Hello, {{request.user.username}}
-		</li>
-		<br>
-		<li>
-			<a href="{% url 'logout' %}">Logout</a>
-		</li>
-	{% else %}
-		<li>
-			<a href="{% url 'login' %}">Login</a>
-		</li>
-		<li>
-			<a href="{% url 'signup' %}">Sign Up</a>
-		</li>
-	{% endif %}
-</ul>
+{% block content %}
 
-<div>
-	<a href="{% url 'new_post' %}">Share My Life</a>
-</div>
-
-<div>
+<div class="cards-listing">
     {% for post in object_list %}
-    	<a href="{% url 'postdetail' post.id %}">
-        	<img src="/{{post.image}}">
-    	</a>
+        <div class="row">
+            <div class="card view-update {{ post.pk }}">
+            
+
+                <a href="{% url 'postdetail' post.pk %}">
+                    <img class="card__main-image" src="/{{ post.image }}">
+                </a>
+
+                
+            </div>
+        </div>
     {% endfor %}
 </div>
+
+{% endblock content %}
