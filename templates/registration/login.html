@@ -1,3 +1,7 @@
+{% extends 'basestyle.html' %}
+
+{% block content %}
+
 <h1>Welcome to Winescipe</h1>
 
 <form method="post">
@@ -7,3 +11,5 @@
     <br>
     <a href="{% url 'signup' %}"><button type="button">Sign Up</button></a>
 </form>
+
+{% endblock content %}
