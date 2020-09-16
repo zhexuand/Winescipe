@@ -1,1 +1,1 @@
-web: gunicorn Winescipe.wsgi --log-file -
+web: gunicorn instagram.wsgi --log-file -
