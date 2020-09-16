@@ -29,7 +29,7 @@ LOGOUT_URL = '/u/logout/'
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -124,7 +124,7 @@ if os.getenv('PRODUCTION') is True:
     # Honor the 'X-Forwarded-Proto' header for request.is_secure()
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-    ALLOWED_HOSTS = ['.herokuapp.com']
+    #ALLOWED_HOSTS = ['.herokuapp.com']
     #STATIC_ROOT = 'staticfiles'
 else:
     INSTALLED_APPS += (
