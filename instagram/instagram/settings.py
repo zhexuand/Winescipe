@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'crispy_forms',
     'accounts',
     'posts',
+    'whitenoise.runserver_nostatic',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -54,6 +55,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 )
 
 ROOT_URLCONF = 'instagram.urls'
@@ -111,23 +113,26 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = 'media'
-STATIC_ROOT = 'staticfiles'
+#STATIC_ROOT = 'staticfiles'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
-if os.getenv('PRODUCTION') is True:
-    DEBUG = False
+    #if os.getenv('PRODUCTION') is True:
+        #DEBUG = False
 
-    import dj_database_url
-    DATABASES['default'] = dj_database_url.config()
+        #import dj_database_url
+        #DATABASES['default'] = dj_database_url.config()
 
     # Honor the 'X-Forwarded-Proto' header for request.is_secure()
-    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+        #SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
     #ALLOWED_HOSTS = ['.herokuapp.com']
     #STATIC_ROOT = 'staticfiles'
-else:
-    INSTALLED_APPS += (
-        'debug_toolbar',
-    )
+    #else:
+        #INSTALLED_APPS += (
+            #'debug_toolbar',
+        #)
     
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
