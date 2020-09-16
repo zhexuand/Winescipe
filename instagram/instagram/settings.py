@@ -131,3 +131,5 @@ else:
     INSTALLED_APPS += (
         'debug_toolbar',
     )
+    
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
