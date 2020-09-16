@@ -43,7 +43,6 @@ INSTALLED_APPS = (
     'crispy_forms',
     'accounts',
     'posts',
-    'whitenoise.runserver_nostatic',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -55,7 +54,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 )
 
 ROOT_URLCONF = 'instagram.urls'
@@ -132,4 +130,3 @@ else:
         'debug_toolbar',
     )
     
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
